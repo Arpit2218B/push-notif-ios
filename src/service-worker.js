@@ -69,4 +69,9 @@ self.addEventListener('message', (event) => {
   }
 });
 
+self.addEventListener("push", e => {
+  console.log(e);
+  self.registration.showNotification("Wohoo!!", { body: e.data.text() })
+})
+
 // Any other custom service worker logic can go here.
