@@ -1,7 +1,7 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
-import { displayNotificationDirectly } from "./utils";
+import { displayNotificationDirectly, getPermission } from "./utils";
 
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
@@ -58,7 +58,8 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
-      displayNotificationDirectly();
+      getPermission();
+      setInterval(displayNotificationDirectly, 5000);
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
